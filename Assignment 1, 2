@@ -1,0 +1,137 @@
+Setting up Github Repository
+git config --global user.name "rohitinchale"
+git config --global user.email "rohitinchale49758@gmail.com"
+
+Create github repository 
+https://github.com/rohitinchale/dac-demo
+
+Clone the repo to local machine
+dac@dac-Veriton-M200-H310:~/RR/gitrepo$ git clone https://github.com/rohitinchale/dac-demo.git
+Cloning into 'dac-demo'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+
+To create the Java file
+dac@dac-Veriton-M200-H310:~/RR/gitrepo$ cd dac-demo
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ vi HelloWorld.java
+
+Add it to the local repo and commit
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git add .
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   HelloWorld.java
+
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git commit -m "My first commit"
+[main 85f6a2e] My first commit
+ 1 file changed, 5 insertions(+)
+ create mode 100644 HelloWorld.java
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+Then Push it to remote repository
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git push origin main
+Username for 'https://github.com': rohitinchale
+Password for 'https://rohitinchale@github.com': 
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 380 bytes | 380.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/rohitinchale/dac-demo.git
+   7a25ff9..85f6a2e  main -> main
+   
+Branching and updatation
+
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git checkout -b B1-branch
+Switched to a new branch 'B1-branch'
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git checkout -b B2-branch
+Switched to a new branch 'B2-branch'
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git checkout -b B1-branch
+fatal: A branch named 'B1-branch' already exists.
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git checkout B1-branch
+Switched to branch 'B1-branch'
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ vi HelloWorld.java
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git add .
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git commit -m "D1 updation"
+[B1-branch 0ce113f] D1 updation
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git checkout B2-branch
+Switched to branch 'B2-branch'
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ vi HelloWorld.java
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git add .
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git commit -m "D2 updation"
+[B2-branch d4ebb92] D2 updation
+ 1 file changed, 1 insertion(+)
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git branch
+  B1-branch
+* B2-branch
+  main
+
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git merge B1-branch
+Auto-merging HelloWorld.java
+CONFLICT (content): Merge conflict in HelloWorld.java
+Automatic merge failed; fix conflicts and then commit the result.
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ vi HelloWorld.java
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git branch
+  B1-branch
+* B2-branch
+  main
+
+
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ vi HelloWorld.java
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git add .
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git commit -m "Bug Fixed"
+[B2-branch 66652ee] Bug Fixed
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git merge B1-branch
+Already up to date.
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git branch
+  B1-branch
+* B2-branch
+  main
+
+
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git merge B2-branch
+Updating 85f6a2e..66652ee
+Fast-forward
+ HelloWorld.java | 3 +++
+ 1 file changed, 3 insertions(+)
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git branch
+  B1-branch
+  B2-branch
+* main
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git branch -d B1-branch
+Deleted branch B1-branch (was 0ce113f).
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git branch -d B2-branch
+Deleted branch B2-branch (was 66652ee).
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git branch
+* main
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/dac-demo$ git push origin main
+Username for 'https://github.com': rohitinchale
+Password for 'https://rohitinchale@github.com': 
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (9/9), 899 bytes | 899.00 KiB/s, done.
+Total 9 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), done.
+To https://github.com/rohitinchale/dac-demo.git
+   85f6a2e..66652ee  main -> main
+
+
+
+

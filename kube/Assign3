@@ -1,0 +1,81 @@
+dac@dac-Veriton-M200-H310:~$ sudo snap install microk8s --classic --channel=1.28
+microk8s (1.28/stable) v1.28.9 from Canonical** installed
+dac@dac-Veriton-M200-H310:~$ sudo usermod -a -G microk8s $USER
+dac@dac-Veriton-M200-H310:~$ sudo chown -f -R $USER ~/.kube
+dac@dac-Veriton-M200-H310:~$ su - $USER
+Password: 
+dac@dac-Veriton-M200-H310:~$ microk8s status --wait-ready
+
+^CTraceback (most recent call last):
+  File "/snap/microk8s/6750/scripts/wrappers/status.py", line 212, in <module>
+    is_ready = wait_for_ready(timeout)
+  File "/snap/microk8s/6750/scripts/wrappers/common/utils.py", line 198, in wait_for_ready
+    time.sleep(2)
+KeyboardInterrupt
+
+dac@dac-Veriton-M200-H310:~$ microk8s status
+microk8s is not running. Use microk8s inspect for a deeper inspection.
+
+
+dac@dac-Veriton-M200-H310:~$ microk8s kubectl get nodes
+NAME                    STATUS   ROLES    AGE   VERSION
+dac-veriton-m200-h310   Ready    <none>   28m   v1.28.9
+dac@dac-Veriton-M200-H310:~$ microk8s kubectl get services
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.152.183.1   <none>        443/TCP   28m
+dac@dac-Veriton-M200-H310:~$ alias kubectl='microk8s kubectl'
+dac@dac-Veriton-M200-H310:~$ kubectl get nodes
+NAME                    STATUS   ROLES    AGE   VERSION
+dac-veriton-m200-h310   Ready    <none>   29m   v1.28.9
+dac@dac-Veriton-M200-H310:~$ kubectl cluster-info
+Kubernetes control plane is running at https://127.0.0.1:16443
+CoreDNS is running at https://127.0.0.1:16443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+dac@dac-Veriton-M200-H310:~$ kubectl get deployments
+No resources found in default namespace.
+dac@dac-Veriton-M200-H310:~$ kubectl get pods
+No resources found in default namespace.
+dac@dac-Veriton-M200-H310:~$ cd RR
+dac@dac-Veriton-M200-H310:~/RR$ ld
+ld: no input files
+dac@dac-Veriton-M200-H310:~/RR$ ls
+CPPAssignment  CPPAssignment.zip  DBT  gitrepo  OsAss
+dac@dac-Veriton-M200-H310:~/RR$ cd gitrepo/
+dac@dac-Veriton-M200-H310:~/RR/gitrepo$ ls
+'Assignment 1, 2'   dac-demo   DockerAssign1   DockerAssign2   token
+dac@dac-Veriton-M200-H310:~/RR/gitrepo$ mkdir kube
+dac@dac-Veriton-M200-H310:~/RR/gitrepo$ cd kube
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ vi demo.yaml
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl apply -f demo.yaml
+pod/demo created
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ vi demodeploy.yaml
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl apply -f demodeploy.yaml
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl scale deployment demodeploy --replicas=5
+deployment.apps/demodeploy scaled
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl scale deployment demodeploy --replicas=2
+deployment.apps/demodeploy scaled
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+demo                         1/1     Running   0          2m50s
+demodeploy-9d7f9cfd7-dsdjw   1/1     Running   0          102s
+demodeploy-9d7f9cfd7-7l8wp   1/1     Running   0          32s
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl scale deployment demodeploy --replicas=5
+deployment.apps/demodeploy scaled
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl get pods
+NAME                         READY   STATUS              RESTARTS   AGE
+demo                         1/1     Running             0          2m58s
+demodeploy-9d7f9cfd7-dsdjw   1/1     Running             0          110s
+demodeploy-9d7f9cfd7-7l8wp   1/1     Running             0          40s
+demodeploy-9d7f9cfd7-ks2nc   0/1     ContainerCreating   0          2s
+demodeploy-9d7f9cfd7-nb9bb   0/1     ContainerCreating   0          2s
+demodeploy-9d7f9cfd7-pql67   0/1     ContainerCreating   0          2s
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl scale deployment demodeploy --replicas=2
+deployment.apps/demodeploy scaled
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl get replicasets
+NAME                   DESIRED   CURRENT   READY   AGE
+demodeploy-9d7f9cfd7   2         2         2       2m11s
+dac@dac-Veriton-M200-H310:~/RR/gitrepo/kube$ kubectl get deployments
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+demodeploy   2/2     2            2           2m20s
+
