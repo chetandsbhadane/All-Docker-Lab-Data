@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max Number and Triangle Type</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #72EDF2 10%, #5151E5 100%);
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: bounceIn 1s ease-in-out;
+        }
+        label {
+            font-weight: bold;
+            color: #5151E5;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        input[type="number"]:focus {
+            border-color: #5151E5;
+            box-shadow: 0 0 10px rgba(81, 81, 229, 0.5);
+        }
+        button {
+            padding: 15px 30px;
+            background: #5151E5;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #72EDF2;
+            color: #5151E5;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        #triangleType {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #5151E5;
+            font-weight: bold;
+        }
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+    <script>
+        function findMaxAndTriangleType() {
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+            var num3 = parseFloat(document.getElementById("num3").value);
+            var max = Math.max(num1, num2, num3);
+            alert("Max: " + max);
+            determineTriangleType(num1, num2, num3);
+        }
+
+        function determineTriangleType(a, b, c) {
+            var triangleType = "";
+
+            if (a === b && b === c) {
+                triangleType = "Equilateral Triangle";
+            } else if (a === b || b === c || a === c) {
+                triangleType = "Isosceles Triangle";
+            } else {
+                triangleType = "Scalene Triangle";
+            }
+
+            document.getElementById("triangleType").innerText = "Triangle Type: " + triangleType;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <label for="num1">Number 1:</label> 
+        <input type="number" id="num1"><br>
+        <label for="num2">Number 2:</label>
+        <input type="number" id="num2"><br>
+        <label for="num3">Number 3:</label>
+        <input type="number" id="num3"><br>
+        <button onclick="findMaxAndTriangleType()">Find Max & Triangle Type</button>
+        <div id="triangleType"></div>
+    </div>
+</body>
+</html>
+<!-- C:\Users\dac\Desktop\Batch_1_lab\Software_Testing\index.html -->

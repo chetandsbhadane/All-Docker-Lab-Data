@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-06-26T09:35:43 IST" name="Suite" finished-at="2024-06-26T09:35:51 IST" duration-ms="7967">
+    <groups>
+    </groups>
+    <test started-at="2024-06-26T09:35:43 IST" name="LoginTest" finished-at="2024-06-26T09:35:51 IST" duration-ms="7967">
+      <class name="CDACDemo.JenkinsLogin">
+        <test-method is-config="true" signature="setDriver()[pri:0, instance:CDACDemo.JenkinsLogin@185a6e9]" started-at="2024-06-26T09:35:33 IST" name="setDriver" finished-at="2024-06-26T09:35:41 IST" duration-ms="7262" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setDriver -->
+        <test-method signature="testLogin()[pri:0, instance:CDACDemo.JenkinsLogin@185a6e9]" started-at="2024-06-26T09:35:43 IST" name="testLogin" finished-at="2024-06-26T09:35:47 IST" duration-ms="4347" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogin -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:CDACDemo.JenkinsLogin@185a6e9]" started-at="2024-06-26T09:35:47 IST" name="closeBrowser" finished-at="2024-06-26T09:35:48 IST" duration-ms="338" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- CDACDemo.JenkinsLogin -->
+      <class name="CDACDemo.Test2">
+        <test-method is-config="true" signature="setDriver()[pri:0, instance:CDACDemo.Test2@62ddbd7e]" started-at="2024-06-26T09:35:41 IST" name="setDriver" finished-at="2024-06-26T09:35:43 IST" duration-ms="2360" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setDriver -->
+        <test-method signature="testLogin()[pri:0, instance:CDACDemo.Test2@62ddbd7e]" started-at="2024-06-26T09:35:48 IST" name="testLogin" finished-at="2024-06-26T09:35:51 IST" duration-ms="2933" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogin -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:CDACDemo.Test2@62ddbd7e]" started-at="2024-06-26T09:35:51 IST" name="closeBrowser" finished-at="2024-06-26T09:35:51 IST" duration-ms="283" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- CDACDemo.Test2 -->
+    </test> <!-- LoginTest -->
+  </suite> <!-- Suite -->
+</testng-results>
